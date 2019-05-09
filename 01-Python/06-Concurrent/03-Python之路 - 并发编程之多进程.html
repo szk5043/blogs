@@ -1,0 +1,3435 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Python之路 - 并发编程之多进程 · blog</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Lyon">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-advanced-emoji/emoji-website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-toggle-chapters/toggle.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex-toc/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="04-Python之路 - 多进程实例及回调函数.html" />
+    
+    
+    <link rel="prev" href="02-Python之路 - 并发编程之多线程.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../SUMMARY.html">
+            
+                <a href="../../SUMMARY.html">
+            
+                    
+                    目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Python
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../01-Basis/">
+            
+                <a href="../01-Basis/">
+            
+                    
+                    Basis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../01-Basis/01-Python之路 - Python介绍.html">
+            
+                <a href="../01-Basis/01-Python之路 - Python介绍.html">
+            
+                    
+                    Python之路 - Python介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../01-Basis/02-Python之路 - Python基础.html">
+            
+                <a href="../01-Basis/02-Python之路 - Python基础.html">
+            
+                    
+                    Python之路 - Python基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3" data-path="../01-Basis/03-Python之路 - 数字类型.html">
+            
+                <a href="../01-Basis/03-Python之路 - 数字类型.html">
+            
+                    
+                    Python之路 - 数字类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.4" data-path="../01-Basis/04-Python之路 - 字符串.html">
+            
+                <a href="../01-Basis/04-Python之路 - 字符串.html">
+            
+                    
+                    Python之路 - 字符串
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.5" data-path="../01-Basis/05-Python之路 - 元组.html">
+            
+                <a href="../01-Basis/05-Python之路 - 元组.html">
+            
+                    
+                    Python之路 - 元组
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.6" data-path="../01-Basis/06-Python之路 - 列表.html">
+            
+                <a href="../01-Basis/06-Python之路 - 列表.html">
+            
+                    
+                    Python之路 - 列表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.7" data-path="../01-Basis/07-Python之路 - 字典.html">
+            
+                <a href="../01-Basis/07-Python之路 - 字典.html">
+            
+                    
+                    Python之路 - 字典
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.8" data-path="../01-Basis/08-Python之路 - 集合.html">
+            
+                <a href="../01-Basis/08-Python之路 - 集合.html">
+            
+                    
+                    Python之路 - 集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.9" data-path="../01-Basis/09-Python之路 - 字符编码.html">
+            
+                <a href="../01-Basis/09-Python之路 - 字符编码.html">
+            
+                    
+                    Python之路 - 字符编码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.10" data-path="../01-Basis/10-Python之路 - 文件操作.html">
+            
+                <a href="../01-Basis/10-Python之路 - 文件操作.html">
+            
+                    
+                    Python之路 - 文件操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../02-Advanced/">
+            
+                <a href="../02-Advanced/">
+            
+                    
+                    Advanced
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" data-path="../02-Advanced/01-Python之路 - 函数.html">
+            
+                <a href="../02-Advanced/01-Python之路 - 函数.html">
+            
+                    
+                    Python之路 - 函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="../02-Advanced/02-Python之路 - 函数进阶.html">
+            
+                <a href="../02-Advanced/02-Python之路 - 函数进阶.html">
+            
+                    
+                    Python之路 - 函数进阶
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.3" data-path="../02-Advanced/03-Python之路 - 匿名函数.html">
+            
+                <a href="../02-Advanced/03-Python之路 - 匿名函数.html">
+            
+                    
+                    Python之路 - 匿名函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.4" data-path="../02-Advanced/04-Python之路 - 内置函数.html">
+            
+                <a href="../02-Advanced/04-Python之路 - 内置函数.html">
+            
+                    
+                    Python之路 - 内置函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.5" data-path="../02-Advanced/05-Python之路 - 迭代器和生成器.html">
+            
+                <a href="../02-Advanced/05-Python之路 - 迭代器和生成器.html">
+            
+                    
+                    Python之路 - 迭代器和生成器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.6" data-path="../02-Advanced/06-Python之路 - 递归.html">
+            
+                <a href="../02-Advanced/06-Python之路 - 递归.html">
+            
+                    
+                    Python之路 - 递归
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../03-Modules/">
+            
+                <a href="../03-Modules/">
+            
+                    
+                    Modules
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.3.1" data-path="../03-Modules/01-Python之路 - 模块初识.html">
+            
+                <a href="../03-Modules/01-Python之路 - 模块初识.html">
+            
+                    
+                    Python之路 - 模块初识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.2" data-path="../03-Modules/02-Python之路 - 模块导入详解.html">
+            
+                <a href="../03-Modules/02-Python之路 - 模块导入详解.html">
+            
+                    
+                    Python之路 - 模块导入详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.3" data-path="../03-Modules/03-Python之路 - 包导入详解.html">
+            
+                <a href="../03-Modules/03-Python之路 - 包导入详解.html">
+            
+                    
+                    Python之路 - 包导入详解
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.4" data-path="../03-Modules/04-Python之路 - 时间和日期模块.html">
+            
+                <a href="../03-Modules/04-Python之路 - 时间和日期模块.html">
+            
+                    
+                    Python之路 - 时间和日期模块
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.5" data-path="../03-Modules/05-Python之路 - 正则表达式.html">
+            
+                <a href="../03-Modules/05-Python之路 - 正则表达式.html">
+            
+                    
+                    Python之路 - 正则表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3.6" data-path="../03-Modules/06-Python之路 - 序列化.html">
+            
+                <a href="../03-Modules/06-Python之路 - 序列化.html">
+            
+                    
+                    Python之路 - 序列化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../04-Object-Oriented/">
+            
+                <a href="../04-Object-Oriented/">
+            
+                    
+                    Object-Oriented
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.4.1" data-path="../04-Object-Oriented/01-Python之路 - 面向对象初识.html">
+            
+                <a href="../04-Object-Oriented/01-Python之路 - 面向对象初识.html">
+            
+                    
+                    Python之路 - 面向对象初识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.2" data-path="../04-Object-Oriented/02-Python之路 - 面向对象之继承.html">
+            
+                <a href="../04-Object-Oriented/02-Python之路 - 面向对象之继承.html">
+            
+                    
+                    Python之路 - 面向对象之继承
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.3" data-path="../04-Object-Oriented/03-Python之路 - 面向对象之多态.html">
+            
+                <a href="../04-Object-Oriented/03-Python之路 - 面向对象之多态.html">
+            
+                    
+                    Python之路 - 面向对象之多态
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.4" data-path="../04-Object-Oriented/04-Python之路 - 面向对象之封装.html">
+            
+                <a href="../04-Object-Oriented/04-Python之路 - 面向对象之封装.html">
+            
+                    
+                    Python之路 - 面向对象之封装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.5" data-path="../04-Object-Oriented/05-Python之路 - 属性方法-类方法-静态方法.html">
+            
+                <a href="../04-Object-Oriented/05-Python之路 - 属性方法-类方法-静态方法.html">
+            
+                    
+                    Python之路 - 属性方法-类方法-静态方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.6" data-path="../04-Object-Oriented/06-Python之路 - 特殊成员方法.html">
+            
+                <a href="../04-Object-Oriented/06-Python之路 - 特殊成员方法.html">
+            
+                    
+                    Python之路 - 特殊成员方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.7" data-path="../04-Object-Oriented/07-Python之路 - 反射.html">
+            
+                <a href="../04-Object-Oriented/07-Python之路 - 反射.html">
+            
+                    
+                    Python之路 - 反射
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.8" data-path="../04-Object-Oriented/08-Python之路 - 异常处理.html">
+            
+                <a href="../04-Object-Oriented/08-Python之路 - 异常处理.html">
+            
+                    
+                    Python之路 - 异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4.9" data-path="../04-Object-Oriented/Python之路 - 特殊操作符.html">
+            
+                <a href="../04-Object-Oriented/Python之路 - 特殊操作符.html">
+            
+                    
+                    Python之路 - 特殊操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../05-Network/">
+            
+                <a href="../05-Network/">
+            
+                    
+                    Network
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.5.1" data-path="../05-Network/01-Python之路 - 网络编程初识.html">
+            
+                <a href="../05-Network/01-Python之路 - 网络编程初识.html">
+            
+                    
+                    Python之路 - 网络编程初识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.2" data-path="../05-Network/02-Python之路 - 网络编程之Socket.html">
+            
+                <a href="../05-Network/02-Python之路 - 网络编程之Socket.html">
+            
+                    
+                    Python之路 - 网络编程之Socket
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.3" data-path="../05-Network/03-Python之路 - Socket实现QQ聊天.html">
+            
+                <a href="../05-Network/03-Python之路 - Socket实现QQ聊天.html">
+            
+                    
+                    Python之路 - Socket实现QQ聊天
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.4" data-path="../05-Network/04-Python之路 - Socket实现远程执行命令.html">
+            
+                <a href="../05-Network/04-Python之路 - Socket实现远程执行命令.html">
+            
+                    
+                    Python之路 - Socket实现远程执行命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.5" data-path="../05-Network/05-Python之路 - 网络编程之粘包.html">
+            
+                <a href="../05-Network/05-Python之路 - 网络编程之粘包.html">
+            
+                    
+                    Python之路 - 网络编程之粘包
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5.6" data-path="../05-Network/06-Python之路 - Socketserver实现多并发.html">
+            
+                <a href="../05-Network/06-Python之路 - Socketserver实现多并发.html">
+            
+                    
+                    Python之路 - Socketserver实现多并发
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Concurrent
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.6.1" data-path="01-Python之路 - 进程与线程.html">
+            
+                <a href="01-Python之路 - 进程与线程.html">
+            
+                    
+                    Python之路 - 进程与线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6.2" data-path="02-Python之路 - 并发编程之多线程.html">
+            
+                <a href="02-Python之路 - 并发编程之多线程.html">
+            
+                    
+                    Python之路 - 并发编程之多线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3.6.3" data-path="03-Python之路 - 并发编程之多进程.html">
+            
+                <a href="03-Python之路 - 并发编程之多进程.html">
+            
+                    
+                    Python之路 - 并发编程之多进程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6.4" data-path="04-Python之路 - 多进程实例及回调函数.html">
+            
+                <a href="04-Python之路 - 多进程实例及回调函数.html">
+            
+                    
+                    Python之路 - 多进程实例及回调函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6.5" data-path="05-Python之路 - 并发编程之协程.html">
+            
+                <a href="05-Python之路 - 并发编程之协程.html">
+            
+                    
+                    Python之路 - 并发编程之协程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6.6" data-path="06-Python之路 - 并发编程之IO多路复用.html">
+            
+                <a href="06-Python之路 - 并发编程之IO多路复用.html">
+            
+                    
+                    Python之路 - 并发编程之IO多路复用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.6.7" data-path="Python之路 - 实现线程池.html">
+            
+                <a href="Python之路 - 实现线程池.html">
+            
+                    
+                    Python之路 - 实现线程池
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7" data-path="../07-Standard-Library/">
+            
+                <a href="../07-Standard-Library/">
+            
+                    
+                    Standard-Library
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.7.1" data-path="../07-Standard-Library/Python之路 - 标准库之os.html">
+            
+                <a href="../07-Standard-Library/Python之路 - 标准库之os.html">
+            
+                    
+                    Python之路 - 标准库之os
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7.2" data-path="../07-Standard-Library/Python之路 - 标准库之random.html">
+            
+                <a href="../07-Standard-Library/Python之路 - 标准库之random.html">
+            
+                    
+                    Python之路 - 标准库之random
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7.3" data-path="../07-Standard-Library/Python之路 - 标准库之sys.html">
+            
+                <a href="../07-Standard-Library/Python之路 - 标准库之sys.html">
+            
+                    
+                    Python之路 - 标准库之sys
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.7.4" data-path="../07-Standard-Library/Python之路 - 标准库之wsgiref.html">
+            
+                <a href="../07-Standard-Library/Python之路 - 标准库之wsgiref.html">
+            
+                    
+                    Python之路 - 标准库之wsgiref
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8" data-path="../08-Third-Library/">
+            
+                <a href="../08-Third-Library/">
+            
+                    
+                    Third-Library
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.8.1" data-path="../08-Third-Library/04-Python之路 - 第三方库之PyMySQL.html">
+            
+                <a href="../08-Third-Library/04-Python之路 - 第三方库之PyMySQL.html">
+            
+                    
+                    Python之路 - 第三方库之PyMySQL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8.2" data-path="../08-Third-Library/05-Python之路 - 第三方库之MySQLdb.html">
+            
+                <a href="../08-Third-Library/05-Python之路 - 第三方库之MySQLdb.html">
+            
+                    
+                    Python之路 - 第三方库之MySQLdb
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.8.3" data-path="../08-Third-Library/06-Python之路 - 第三方库之SQlAlchemy.html">
+            
+                <a href="../08-Third-Library/06-Python之路 - 第三方库之SQlAlchemy.html">
+            
+                    
+                    Python之路 - 第三方库之SQlAlchemy
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9" data-path="../09-In-Depth/">
+            
+                <a href="../09-In-Depth/">
+            
+                    
+                    In-Depth
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.9.1" data-path="../09-In-Depth/01-Python之路 - 对象机制.html">
+            
+                <a href="../09-In-Depth/01-Python之路 - 对象机制.html">
+            
+                    
+                    Python之路 - 对象机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.2" data-path="../09-In-Depth/02-Python之路 - 对象的创建.html">
+            
+                <a href="../09-In-Depth/02-Python之路 - 对象的创建.html">
+            
+                    
+                    Python之路 - 对象的创建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.3" data-path="../09-In-Depth/03-Python之路 - 整数对象.html">
+            
+                <a href="../09-In-Depth/03-Python之路 - 整数对象.html">
+            
+                    
+                    Python之路 - 整数对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.4" data-path="../09-In-Depth/04-Python之路 - 字符串对象.html">
+            
+                <a href="../09-In-Depth/04-Python之路 - 字符串对象.html">
+            
+                    
+                    Python之路 - 字符串对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.5" data-path="../09-In-Depth/05-Python之路 - List对象.html">
+            
+                <a href="../09-In-Depth/05-Python之路 - List对象.html">
+            
+                    
+                    Python之路 - List对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.6" data-path="../09-In-Depth/06-Python之路 - Dict对象.html">
+            
+                <a href="../09-In-Depth/06-Python之路 - Dict对象.html">
+            
+                    
+                    Python之路 - Dict对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.7" data-path="../09-In-Depth/07-Python之路 - Tuple对象.html">
+            
+                <a href="../09-In-Depth/07-Python之路 - Tuple对象.html">
+            
+                    
+                    Python之路 - Tuple对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.9.8" data-path="../09-In-Depth/Python之路 - 垃圾回收.html">
+            
+                <a href="../09-In-Depth/Python之路 - 垃圾回收.html">
+            
+                    
+                    Python之路 - 垃圾回收
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../../02-Go/">
+            
+                <a href="../../02-Go/">
+            
+                    
+                    Go
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../03-MySQL/">
+            
+                <a href="../../03-MySQL/">
+            
+                    
+                    MySQL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../../03-MySQL/01-Python之路 - MySQL之库操作.html">
+            
+                <a href="../../03-MySQL/01-Python之路 - MySQL之库操作.html">
+            
+                    
+                    Python之路 - MySQL之库操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../../03-MySQL/02-Python之路 - MySQL之数据类型.html">
+            
+                <a href="../../03-MySQL/02-Python之路 - MySQL之数据类型.html">
+            
+                    
+                    Python之路 - MySQL之数据类型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../../03-MySQL/03-Python之路 - MySQL之存储引擎.html">
+            
+                <a href="../../03-MySQL/03-Python之路 - MySQL之存储引擎.html">
+            
+                    
+                    Python之路 - MySQL之存储引擎
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../../03-MySQL/04-Python之路 - MySQL之表操作.html">
+            
+                <a href="../../03-MySQL/04-Python之路 - MySQL之表操作.html">
+            
+                    
+                    Python之路 - MySQL之表操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../../03-MySQL/05-Python之路 - MySQL之数据操作.html">
+            
+                <a href="../../03-MySQL/05-Python之路 - MySQL之数据操作.html">
+            
+                    
+                    Python之路 - MySQL之数据操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../../03-MySQL/06-Python之路 - MySQL之索引.html">
+            
+                <a href="../../03-MySQL/06-Python之路 - MySQL之索引.html">
+            
+                    
+                    Python之路 - MySQL之索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../../03-MySQL/07-Python之路 - MySQL之视图.html">
+            
+                <a href="../../03-MySQL/07-Python之路 - MySQL之视图.html">
+            
+                    
+                    Python之路 - MySQL之视图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../../03-MySQL/08-Python之路 - MySQL存储过程与函数.html">
+            
+                <a href="../../03-MySQL/08-Python之路 - MySQL存储过程与函数.html">
+            
+                    
+                    Python之路 - MySQL存储过程与函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../../03-MySQL/09-Python之路 - MySQL触发器与事务.html">
+            
+                <a href="../../03-MySQL/09-Python之路 - MySQL触发器与事务.html">
+            
+                    
+                    Python之路 - MySQL触发器与事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../../03-MySQL/10-Python之路 - MySQL之SQL注入.html">
+            
+                <a href="../../03-MySQL/10-Python之路 - MySQL之SQL注入.html">
+            
+                    
+                    Python之路 - MySQL之SQL注入
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="../../03-MySQL/SQL优化.html">
+            
+                <a href="../../03-MySQL/SQL优化.html">
+            
+                    
+                    SQL优化
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../04-Front-End/">
+            
+                <a href="../../04-Front-End/">
+            
+                    
+                    Front-End
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../../04-Front-End/02-Web开发之路 - HTML-head.html">
+            
+                <a href="../../04-Front-End/02-Web开发之路 - HTML-head.html">
+            
+                    
+                    Web开发之路 - HTML-head
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../../04-Front-End/03-Web开发之路 - HTML-body.html">
+            
+                <a href="../../04-Front-End/03-Web开发之路 - HTML-body.html">
+            
+                    
+                    Web开发之路 - HTML-body
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="../../04-Front-End/05-Web开发之路 - CSS.html">
+            
+                <a href="../../04-Front-End/05-Web开发之路 - CSS.html">
+            
+                    
+                    Web开发之路 - CSS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="../../04-Front-End/06-Web开发之路 - JavaScript.html">
+            
+                <a href="../../04-Front-End/06-Web开发之路 - JavaScript.html">
+            
+                    
+                    Web开发之路 - JavaScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="../../04-Front-End/07-Web开发之路 - BOM.html">
+            
+                <a href="../../04-Front-End/07-Web开发之路 - BOM.html">
+            
+                    
+                    Web开发之路 - BOM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="../../04-Front-End/08-Web开发之路 - DOM.html">
+            
+                <a href="../../04-Front-End/08-Web开发之路 - DOM.html">
+            
+                    
+                    Web开发之路 - DOM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="../../04-Front-End/09-Web开发之路 - jQuery.html">
+            
+                <a href="../../04-Front-End/09-Web开发之路 - jQuery.html">
+            
+                    
+                    Web开发之路 - jQuery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="../../04-Front-End/11-Web开发之路 - Ajax.html">
+            
+                <a href="../../04-Front-End/11-Web开发之路 - Ajax.html">
+            
+                    
+                    Web开发之路 - Ajax
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9" data-path="../../04-Front-End/Vue/">
+            
+                <a href="../../04-Front-End/Vue/">
+            
+                    
+                    Vue
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.9.1" data-path="../../04-Front-End/Vue/01-Vue - 介绍.html">
+            
+                <a href="../../04-Front-End/Vue/01-Vue - 介绍.html">
+            
+                    
+                    Vue - 介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.2" data-path="../../04-Front-End/Vue/02-Vue - 实例.html">
+            
+                <a href="../../04-Front-End/Vue/02-Vue - 实例.html">
+            
+                    
+                    Vue - 实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.3" data-path="../../04-Front-End/Vue/03-Vue - 模板语法.html">
+            
+                <a href="../../04-Front-End/Vue/03-Vue - 模板语法.html">
+            
+                    
+                    Vue - 模板语法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.4" data-path="../../04-Front-End/Vue/04-Vue - 计算属性和侦听器.html">
+            
+                <a href="../../04-Front-End/Vue/04-Vue - 计算属性和侦听器.html">
+            
+                    
+                    Vue - 计算属性和侦听器
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.5" data-path="../../04-Front-End/Vue/05-Vue - Class与Style 绑定.html">
+            
+                <a href="../../04-Front-End/Vue/05-Vue - Class与Style 绑定.html">
+            
+                    
+                    Vue - Class与Style 绑定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.6" data-path="../../04-Front-End/Vue/06-Vue - 条件渲染.html">
+            
+                <a href="../../04-Front-End/Vue/06-Vue - 条件渲染.html">
+            
+                    
+                    Vue - 条件渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.7" data-path="../../04-Front-End/Vue/07-Vue - 列表渲染.html">
+            
+                <a href="../../04-Front-End/Vue/07-Vue - 列表渲染.html">
+            
+                    
+                    Vue - 列表渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.8" data-path="../../04-Front-End/Vue/08-Vue - 事件处理.html">
+            
+                <a href="../../04-Front-End/Vue/08-Vue - 事件处理.html">
+            
+                    
+                    Vue - 事件处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.9" data-path="../../04-Front-End/Vue/09-Vue - 组件基础.html">
+            
+                <a href="../../04-Front-End/Vue/09-Vue - 组件基础.html">
+            
+                    
+                    Vue - 组件基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.9.10" data-path="../../04-Front-End/Vue/10-Vue - Vue-cli.html">
+            
+                <a href="../../04-Front-End/Vue/10-Vue - Vue-cli.html">
+            
+                    
+                    Vue - Vue-cli
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../05-Web-Framework/">
+            
+                <a href="../../05-Web-Framework/">
+            
+                    
+                    Web-Framework
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../../05-Web-Framework/01-HTTP基础.html">
+            
+                <a href="../../05-Web-Framework/01-HTTP基础.html">
+            
+                    
+                    HTTP基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../../05-Web-Framework/02-REST.html">
+            
+                <a href="../../05-Web-Framework/02-REST.html">
+            
+                    
+                    REST
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../../05-Web-Framework/03-ORM简介.html">
+            
+                <a href="../../05-Web-Framework/03-ORM简介.html">
+            
+                    
+                    ORM简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="../../05-Web-Framework/Django/">
+            
+                <a href="../../05-Web-Framework/Django/">
+            
+                    
+                    Django
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.4.1" data-path="../../05-Web-Framework/Django/01-Web框架简介.html">
+            
+                <a href="../../05-Web-Framework/Django/01-Web框架简介.html">
+            
+                    
+                    Web框架简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.2" data-path="../../05-Web-Framework/Django/02-Django - Django初识.html">
+            
+                <a href="../../05-Web-Framework/Django/02-Django - Django初识.html">
+            
+                    
+                    Django - Django初识
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.3" data-path="../../05-Web-Framework/Django/03-Django - Settings.html">
+            
+                <a href="../../05-Web-Framework/Django/03-Django - Settings.html">
+            
+                    
+                    Django - Settings
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.4" data-path="../../05-Web-Framework/Django/04-Django - Urls.html">
+            
+                <a href="../../05-Web-Framework/Django/04-Django - Urls.html">
+            
+                    
+                    Django - Urls
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.5" data-path="../../05-Web-Framework/Django/05-Django - Views.html">
+            
+                <a href="../../05-Web-Framework/Django/05-Django - Views.html">
+            
+                    
+                    Django - Views
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.6" data-path="../../05-Web-Framework/Django/06-Django - Model.html">
+            
+                <a href="../../05-Web-Framework/Django/06-Django - Model.html">
+            
+                    
+                    Django - Model
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.7" data-path="../../05-Web-Framework/Django/07-Django - Model Fields.html">
+            
+                <a href="../../05-Web-Framework/Django/07-Django - Model Fields.html">
+            
+                    
+                    Django - Model Fields
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.8" data-path="../../05-Web-Framework/Django/08-Django - Model Field Options.html">
+            
+                <a href="../../05-Web-Framework/Django/08-Django - Model Field Options.html">
+            
+                    
+                    Django - Model Field Options
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.9" data-path="../../05-Web-Framework/Django/09-Django - Model QuerySet API.html">
+            
+                <a href="../../05-Web-Framework/Django/09-Django - Model QuerySet API.html">
+            
+                    
+                    Django - Model QuerySet API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.10" data-path="../../05-Web-Framework/Django/10-Django - Model Making queries.html">
+            
+                <a href="../../05-Web-Framework/Django/10-Django - Model Making queries.html">
+            
+                    
+                    Django - Model Making queries
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.11" data-path="../../05-Web-Framework/Django/11-Django - Forms.html">
+            
+                <a href="../../05-Web-Framework/Django/11-Django - Forms.html">
+            
+                    
+                    Django - Forms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.12" data-path="../../05-Web-Framework/Django/12-Django - Template.html">
+            
+                <a href="../../05-Web-Framework/Django/12-Django - Template.html">
+            
+                    
+                    Django - Template
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.13" data-path="../../05-Web-Framework/Django/13-Django - Template Language.html">
+            
+                <a href="../../05-Web-Framework/Django/13-Django - Template Language.html">
+            
+                    
+                    Django - Template Language
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.14" data-path="../../05-Web-Framework/Django/14-Django - Middleware.html">
+            
+                <a href="../../05-Web-Framework/Django/14-Django - Middleware.html">
+            
+                    
+                    Django - Middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.15" data-path="../../05-Web-Framework/Django/15-Django - Sessions.html">
+            
+                <a href="../../05-Web-Framework/Django/15-Django - Sessions.html">
+            
+                    
+                    Django - Sessions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.16" data-path="../../05-Web-Framework/Django/16-Django - Authentication System.html">
+            
+                <a href="../../05-Web-Framework/Django/16-Django - Authentication System.html">
+            
+                    
+                    Django - Authentication System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.17" data-path="../../05-Web-Framework/Django/50-Django - 源码之startproject.html">
+            
+                <a href="../../05-Web-Framework/Django/50-Django - 源码之startproject.html">
+            
+                    
+                    Django - 源码之startproject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.18" data-path="../../05-Web-Framework/Django/51-Django - 源码之runserver.html">
+            
+                <a href="../../05-Web-Framework/Django/51-Django - 源码之runserver.html">
+            
+                    
+                    Django - 源码之runserver
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.19" data-path="../../05-Web-Framework/Django/52-Django - 源码之middleware.html">
+            
+                <a href="../../05-Web-Framework/Django/52-Django - 源码之middleware.html">
+            
+                    
+                    Django - 源码之middleware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.20" data-path="../../05-Web-Framework/Django/53-Django - 源码之url.html">
+            
+                <a href="../../05-Web-Framework/Django/53-Django - 源码之url.html">
+            
+                    
+                    Django - 源码之url
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.21" data-path="../../05-Web-Framework/Django/54-Django - 源码之admin.html">
+            
+                <a href="../../05-Web-Framework/Django/54-Django - 源码之admin.html">
+            
+                    
+                    Django - 源码之admin
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4.22" data-path="../../05-Web-Framework/Django/Django - Django命令整理.html">
+            
+                <a href="../../05-Web-Framework/Django/Django - Django命令整理.html">
+            
+                    
+                    Django - Django命令整理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../../05-Web-Framework/Django-Rest-Framework/">
+            
+                <a href="../../05-Web-Framework/Django-Rest-Framework/">
+            
+                    
+                    Django-Rest-Framework
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.5.1" data-path="../../05-Web-Framework/Django-Rest-Framework/Quickstart.html">
+            
+                <a href="../../05-Web-Framework/Django-Rest-Framework/Quickstart.html">
+            
+                    
+                    Quickstart
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5.2" data-path="../../05-Web-Framework/Django-Rest-Framework/Tutorial 1 Serialization.html">
+            
+                <a href="../../05-Web-Framework/Django-Rest-Framework/Tutorial 1 Serialization.html">
+            
+                    
+                    Tutorial 1 Serialization
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5.3" data-path="../../05-Web-Framework/Django-Rest-Framework/Tutorial 2 Requests and Responses.html">
+            
+                <a href="../../05-Web-Framework/Django-Rest-Framework/Tutorial 2 Requests and Responses.html">
+            
+                    
+                    Tutorial 2 Requests and Responses
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5.4" data-path="../../05-Web-Framework/Django-Rest-Framework/Tutorial 3 Class-based Views.html">
+            
+                <a href="../../05-Web-Framework/Django-Rest-Framework/Tutorial 3 Class-based Views.html">
+            
+                    
+                    Tutorial 3 Class-based Views
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5.5" data-path="../../05-Web-Framework/Django-Rest-Framework/Tutorial 4 Authentication & Permissions.html">
+            
+                <a href="../../05-Web-Framework/Django-Rest-Framework/Tutorial 4 Authentication & Permissions.html">
+            
+                    
+                    Tutorial 4 Authentication & Permissions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5.6" data-path="../../05-Web-Framework/Django-Rest-Framework/Tutorial 5 Relationships & Hyperlinked APIs.html">
+            
+                <a href="../../05-Web-Framework/Django-Rest-Framework/Tutorial 5 Relationships & Hyperlinked APIs.html">
+            
+                    
+                    Tutorial 5 Relationships & Hyperlinked APIs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5.7" data-path="../../05-Web-Framework/Django-Rest-Framework/Tutorial 6 ViewSets & Routers.html">
+            
+                <a href="../../05-Web-Framework/Django-Rest-Framework/Tutorial 6 ViewSets & Routers.html">
+            
+                    
+                    Tutorial 6 ViewSets & Routers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5.8" data-path="../../05-Web-Framework/Django-Rest-Framework/Tutorial 7 Schemas & client libraries.html">
+            
+                <a href="../../05-Web-Framework/Django-Rest-Framework/Tutorial 7 Schemas & client libraries.html">
+            
+                    
+                    Tutorial 7 Schemas & client libraries
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6" data-path="../../05-Web-Framework/Flask/">
+            
+                <a href="../../05-Web-Framework/Flask/">
+            
+                    
+                    Flask
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.6.1" data-path="../../05-Web-Framework/Flask/01-Flask - 源码简要说明.html">
+            
+                <a href="../../05-Web-Framework/Flask/01-Flask - 源码简要说明.html">
+            
+                    
+                    Flask - 源码简要说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.2" data-path="../../05-Web-Framework/Flask/02-Flask - 源码之开始.html">
+            
+                <a href="../../05-Web-Framework/Flask/02-Flask - 源码之开始.html">
+            
+                    
+                    Flask - 源码之开始
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.3" data-path="../../05-Web-Framework/Flask/03-Flask - 源码之配置.html">
+            
+                <a href="../../05-Web-Framework/Flask/03-Flask - 源码之配置.html">
+            
+                    
+                    Flask - 源码之配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.4" data-path="../../05-Web-Framework/Flask/04-Flask - 源码之路由.html">
+            
+                <a href="../../05-Web-Framework/Flask/04-Flask - 源码之路由.html">
+            
+                    
+                    Flask - 源码之路由
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.5" data-path="../../05-Web-Framework/Flask/05-Flask - 源码之视图.html">
+            
+                <a href="../../05-Web-Framework/Flask/05-Flask - 源码之视图.html">
+            
+                    
+                    Flask - 源码之视图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.6" data-path="../../05-Web-Framework/Flask/06-Flask - 源码之蓝图.html">
+            
+                <a href="../../05-Web-Framework/Flask/06-Flask - 源码之蓝图.html">
+            
+                    
+                    Flask - 源码之蓝图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.7" data-path="../../05-Web-Framework/Flask/07-Flask - 源码之本地线程.html">
+            
+                <a href="../../05-Web-Framework/Flask/07-Flask - 源码之本地线程.html">
+            
+                    
+                    Flask - 源码之本地线程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.8" data-path="../../05-Web-Framework/Flask/08-Flask - 源码之上下文.html">
+            
+                <a href="../../05-Web-Framework/Flask/08-Flask - 源码之上下文.html">
+            
+                    
+                    Flask - 源码之上下文
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.9" data-path="../../05-Web-Framework/Flask/09-Flask - 源码之信号.html">
+            
+                <a href="../../05-Web-Framework/Flask/09-Flask - 源码之信号.html">
+            
+                    
+                    Flask - 源码之信号
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.10" data-path="../../05-Web-Framework/Flask/10-Flask - 扩展.html">
+            
+                <a href="../../05-Web-Framework/Flask/10-Flask - 扩展.html">
+            
+                    
+                    Flask - 扩展
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.11" data-path="../../05-Web-Framework/Flask/DBUtils.html">
+            
+                <a href="../../05-Web-Framework/Flask/DBUtils.html">
+            
+                    
+                    DBUtils
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.6.12" data-path="../../05-Web-Framework/Flask/virtualenv基本使用.html">
+            
+                <a href="../../05-Web-Framework/Flask/virtualenv基本使用.html">
+            
+                    
+                    virtualenv基本使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.7" data-path="../../05-Web-Framework/Tornado/">
+            
+                <a href="../../05-Web-Framework/Tornado/">
+            
+                    
+                    Tornado
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../06-Redis/">
+            
+                <a href="../../06-Redis/">
+            
+                    
+                    Redis
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../../06-Redis/01-Redis - 简介.html">
+            
+                <a href="../../06-Redis/01-Redis - 简介.html">
+            
+                    
+                    Redis - 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../../06-Redis/02-Redis - 配置参数说明.html">
+            
+                <a href="../../06-Redis/02-Redis - 配置参数说明.html">
+            
+                    
+                    Redis - 配置参数说明
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../../06-Redis/03-Redis - 基础命令.html">
+            
+                <a href="../../06-Redis/03-Redis - 基础命令.html">
+            
+                    
+                    Redis - 基础命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../../06-Redis/04-Redis - 数据库.html">
+            
+                <a href="../../06-Redis/04-Redis - 数据库.html">
+            
+                    
+                    Redis - 数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../../06-Redis/05-Redis - 事务.html">
+            
+                <a href="../../06-Redis/05-Redis - 事务.html">
+            
+                    
+                    Redis - 事务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../../06-Redis/06-Redis - 主从复制.html">
+            
+                <a href="../../06-Redis/06-Redis - 主从复制.html">
+            
+                    
+                    Redis - 主从复制
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="../../06-Redis/07-Redis - 集群.html">
+            
+                <a href="../../06-Redis/07-Redis - 集群.html">
+            
+                    
+                    Redis - 集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="../../06-Redis/08-Redis - Sentinel.html">
+            
+                <a href="../../06-Redis/08-Redis - Sentinel.html">
+            
+                    
+                    Redis - Sentinel
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="../../06-Redis/Python操作Redis.html">
+            
+                <a href="../../06-Redis/Python操作Redis.html">
+            
+                    
+                    Python操作Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../07-DesignPattern/">
+            
+                <a href="../../07-DesignPattern/">
+            
+                    
+                    DesignPattern
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../../08-Algorithms/">
+            
+                <a href="../../08-Algorithms/">
+            
+                    
+                    Algorithms
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../../08-Algorithms/01-算法基础.html">
+            
+                <a href="../../08-Algorithms/01-算法基础.html">
+            
+                    
+                    算法基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../../08-Algorithms/02-排序算法.html">
+            
+                <a href="../../08-Algorithms/02-排序算法.html">
+            
+                    
+                    排序算法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../../09-Linux/">
+            
+                <a href="../../09-Linux/">
+            
+                    
+                    Linux
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../../09-Linux/Celery.html">
+            
+                <a href="../../09-Linux/Celery.html">
+            
+                    
+                    Celery
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../../09-Linux/Docker.html">
+            
+                <a href="../../09-Linux/Docker.html">
+            
+                    
+                    Docker
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../../09-Linux/Git/">
+            
+                <a href="../../09-Linux/Git/">
+            
+                    
+                    Git
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.3.1" data-path="../../09-Linux/Git/01-Git&GitHub.html">
+            
+                <a href="../../09-Linux/Git/01-Git&GitHub.html">
+            
+                    
+                    Git&GitHub
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3.2" data-path="../../09-Linux/Git/02-Git基础命令.html">
+            
+                <a href="../../09-Linux/Git/02-Git基础命令.html">
+            
+                    
+                    Git基础命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3.3" data-path="../../09-Linux/Git/GitHub Pages&Gitbook&Travis CI持续构建博客.html">
+            
+                <a href="../../09-Linux/Git/GitHub Pages&Gitbook&Travis CI持续构建博客.html">
+            
+                    
+                    GitHub Pages&Gitbook&Travis CI持续构建博客
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3.4" data-path="../../09-Linux/Git/Git所遇问题.html">
+            
+                <a href="../../09-Linux/Git/Git所遇问题.html">
+            
+                    
+                    Git所遇问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3.5" data-path="../../09-Linux/Git/Travis  CI.html">
+            
+                <a href="../../09-Linux/Git/Travis  CI.html">
+            
+                    
+                    Travis  CI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="../../09-Linux/Linux基础命令.html">
+            
+                <a href="../../09-Linux/Linux基础命令.html">
+            
+                    
+                    Linux基础命令
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="../../09-Linux/RabbitMQ.html">
+            
+                <a href="../../09-Linux/RabbitMQ.html">
+            
+                    
+                    RabbitMQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="../../09-Linux/vim.html">
+            
+                <a href="../../09-Linux/vim.html">
+            
+                    
+                    vim
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../../Others/">
+            
+                <a href="../../Others/">
+            
+                    
+                    Others
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../../Others/01-一个PyCharm安装module的问题.html">
+            
+                <a href="../../Others/01-一个PyCharm安装module的问题.html">
+            
+                    
+                    一个PyCharm安装module的问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../../Others/Python操作MongoDB.html">
+            
+                <a href="../../Others/Python操作MongoDB.html">
+            
+                    
+                    Python操作MongoDB
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../Read/">
+            
+                <a href="../../Read/">
+            
+                    
+                    Read
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >Python之路 - 并发编程之多进程</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-anchor"></i><ul><li><span class="title-icon "></span><a href="#python&#x4E4B;&#x8DEF;---&#x591A;&#x8FDB;&#x7A0B;&#x7F16;&#x7A0B;"><b></b>Python&#x4E4B;&#x8DEF; - &#x591A;&#x8FDB;&#x7A0B;&#x7F16;&#x7A0B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x524D;&#x8A00;--&#x1F340;"><b></b>&#x524D;&#x8A00;  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#multiprocessing--&#x1F340;"><b></b>multiprocessing  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#process--&#x1F340;"><b></b>Process  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#join--daemon--&#x1F340;"><b></b>Join &amp; Daemon  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#lock--&#x1F340;"><b></b>Lock  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#producer-consumer--&#x1F340;"><b></b>Producer-consumer  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#queue--&#x1F340;"><b></b>Queue  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#pipe--&#x1F340;"><b></b>Pipe  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#manager--&#x1F340;"><b></b>Manager  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#semaphore--&#x1F340;"><b></b>Semaphore  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#event--&#x1F340;"><b></b>Event  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#pool--&#x1F340;"><b></b>Pool  &#x1F340;</a></li></ul></ul></div><a href="#python&#x4E4B;&#x8DEF;---&#x591A;&#x8FDB;&#x7A0B;&#x7F16;&#x7A0B;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="python&#x4E4B;&#x8DEF;---&#x591A;&#x8FDB;&#x7A0B;&#x7F16;&#x7A0B;"><a name="python&#x4E4B;&#x8DEF;---&#x591A;&#x8FDB;&#x7A0B;&#x7F16;&#x7A0B;" class="anchor-navigation-ex-anchor" href="#python&#x4E4B;&#x8DEF;---&#x591A;&#x8FDB;&#x7A0B;&#x7F16;&#x7A0B;"><i class="fa fa-link" aria-hidden="true"></i></a>Python&#x4E4B;&#x8DEF; - &#x591A;&#x8FDB;&#x7A0B;&#x7F16;&#x7A0B;</h1>
+<div id="anchor-navigation-ex-pagetop-navbar"><ul><li><span class="title-icon "></span><a href="#python&#x4E4B;&#x8DEF;---&#x591A;&#x8FDB;&#x7A0B;&#x7F16;&#x7A0B;"><b></b>Python&#x4E4B;&#x8DEF; - &#x591A;&#x8FDB;&#x7A0B;&#x7F16;&#x7A0B;</a></li><ul><li><span class="title-icon "></span><a href="#&#x524D;&#x8A00;--&#x1F340;"><b></b>&#x524D;&#x8A00;  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#multiprocessing--&#x1F340;"><b></b>multiprocessing  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#process--&#x1F340;"><b></b>Process  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#join--daemon--&#x1F340;"><b></b>Join &amp; Daemon  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#lock--&#x1F340;"><b></b>Lock  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#producer-consumer--&#x1F340;"><b></b>Producer-consumer  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#queue--&#x1F340;"><b></b>Queue  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#pipe--&#x1F340;"><b></b>Pipe  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#manager--&#x1F340;"><b></b>Manager  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#semaphore--&#x1F340;"><b></b>Semaphore  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#event--&#x1F340;"><b></b>Event  &#x1F340;</a></li><li><span class="title-icon "></span><a href="#pool--&#x1F340;"><b></b>Pool  &#x1F340;</a></li></ul></ul></div>
+
+<h2 id="&#x524D;&#x8A00;--&#x1F340;"><a name="&#x524D;&#x8A00;--&#x1F340;" class="anchor-navigation-ex-anchor" href="#&#x524D;&#x8A00;--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x524D;&#x8A00;  &#x1F340;</h2>
+<p>&#x4E0A;&#x4E00;&#x7BC7;&#x300A;<a href="https://lyonyang.gitbooks.io/blog/01-Python/06-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%AF%87/02-Python%E4%B9%8B%E8%B7%AF%20-%20%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B.html" target="_blank">&#x591A;&#x7EBF;&#x7A0B;&#x7F16;&#x7A0B;</a>&#x300B;&#x4E2D;&#x5DF2;&#x7ECF;&#x5BF9;Python&#x4E2D;&#x591A;&#x7EBF;&#x7A0B;&#x90E8;&#x5206;&#x8FDB;&#x884C;&#x4E86;&#x6574;&#x7406; , &#x8FDB;&#x7A0B;&#x4E2D;&#x6709;&#x5F88;&#x591A;&#x4E5F;&#x662F;&#x76F8;&#x4F3C;&#x7684;</p>
+<p>&#x6982;&#x5FF5;&#x5728;&#x5E76;&#x53D1;&#x7F16;&#x7A0B;&#x7B2C;&#x4E00;&#x7BC7;&#x4E2D;&#x5C31;&#x5DF2;&#x7ECF;&#x4ECB;&#x7ECD;&#x4E86; , So&#x76F4;&#x63A5;&#x5F00;&#x59CB;&#x64CD;&#x4F5C;</p>
+<h2 id="multiprocessing--&#x1F340;"><a name="multiprocessing--&#x1F340;" class="anchor-navigation-ex-anchor" href="#multiprocessing--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>multiprocessing  &#x1F340;</h2>
+<p>&#x4ECE;&#x4E0A;&#x4E00;&#x7BC7;&#x6211;&#x4EEC;&#x4E5F;&#x5DF2;&#x7ECF;&#x77E5;&#x9053;&#x4E86; , Python&#x4E2D;&#x7684;&#x591A;&#x7EBF;&#x7A0B;&#x65E0;&#x6CD5;&#x5229;&#x7528;&#x591A;&#x6838;&#x4F18;&#x52BF; , &#x6240;&#x4EE5;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x5145;&#x5206;&#x5730;&#x4F7F;&#x7528;&#x591A;&#x6838;CPU&#x7684;&#x8D44;&#x6E90; , &#x90A3;&#x4E48;&#x5C31;&#x53EA;&#x80FD;&#x9760;&#x591A;&#x8FDB;&#x7A0B;&#x4E86; , &#x56E0;&#x4E3A;&#x8FDB;&#x7A0B;&#x662F;&#x7CFB;&#x7EDF;&#x8C03;&#x5EA6;&#x7684; , Python&#x63D0;&#x4F9B;&#x4E86;<code>multiprocessing</code>&#x6A21;&#x5757;&#x4E86;&#x5BF9;&#x591A;&#x8FDB;&#x7A0B;&#x7684;&#x652F;&#x6301;</p>
+<p>multiprocessing&#x6A21;&#x5757;&#x4E2D;&#x63D0;&#x4F9B;&#x4E86;Process , Queue , Pipe , Lock , RLock , Event , Condition&#x7B49;&#x7EC4;&#x4EF6; , &#x4E0E;threading&#x6A21;&#x5757;&#x6709;&#x5F88;&#x591A;&#x76F8;&#x4F3C;&#x4E4B;&#x5904;</p>
+<h2 id="process--&#x1F340;"><a name="process--&#x1F340;" class="anchor-navigation-ex-anchor" href="#process--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Process  &#x1F340;</h2>
+<p>&#x7528;&#x4E8E;&#x521B;&#x5EFA;&#x8FDB;&#x7A0B;&#x7684;&#x7C7B; , &#x4E0E;threading&#x6A21;&#x5757;&#x4E2D;&#x7684;<code>_Thread</code>&#x7C7B;&#x7C7B;&#x4F3C; </p>
+<pre><code class="lang-python"><span class="hljs-string">&apos;&apos;&apos;
+Process&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;
+def __init__(self, group=None, target=None, name=None, args=(), kwargs={}):
+&apos;&apos;&apos;</span>
+</code></pre>
+<p>&#x53C2;&#x6570;&#x8BF4;&#x660E;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>group</td>
+<td>&#x672A;&#x4F7F;&#x7528; , &#x503C;&#x59CB;&#x7EC8;</td>
+</tr>
+<tr>
+<td>target</td>
+<td>&#x4E0E;threading.Tread&#x4E2D;&#x7684;target&#x53C2;&#x6570;&#x4E00;&#x6837; , &#x8868;&#x793A;&#x8C03;&#x7528;&#x5BF9;&#x8C61; , &#x5373;&#x5B50;&#x8FDB;&#x7A0B;&#x8981;&#x6267;&#x884C;&#x7684;&#x4EFB;&#x52A1;</td>
+</tr>
+<tr>
+<td>name</td>
+<td>&#x5B50;&#x8FDB;&#x7A0B;&#x7684;&#x540D;&#x79F0;</td>
+</tr>
+<tr>
+<td>args</td>
+<td>&#x4F20;&#x5165;target&#x51FD;&#x6570;&#x4E2D;&#x7684;&#x4F4D;&#x7F6E;&#x53C2;&#x6570; , &#x662F;&#x4E00;&#x4E2A;&#x5143;&#x7EC4; , &#x4E0E;&#x7EBF;&#x7A0B;&#x4E00;&#x6837; , &#x53C2;&#x6570;&#x540E;&#x5FC5;&#x987B;&#x52A0;&#x9017;&#x53F7;</td>
+</tr>
+<tr>
+<td>kwargs</td>
+<td>&#x8868;&#x793A;&#x8C03;&#x7528;&#x5BF9;&#x8C61;&#x7684;&#x5B57;&#x5178;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x65B9;&#x6CD5;&#x8BF4;&#x660E;</p>
+<table>
+<thead>
+<tr>
+<th>&#x65B9;&#x6CD5;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Process.run (self)</td>
+<td>&#x8FDB;&#x7A0B;&#x542F;&#x52A8;&#x65F6;&#x8FD0;&#x884C;&#x7684;&#x65B9;&#x6CD5; , &#x7531;&#x8BE5;&#x65B9;&#x6CD5;&#x8C03;&#x7528;target&#x53C2;&#x6570;&#x6240;&#x6307;&#x5B9A;&#x7684;&#x51FD;&#x6570; , &#x5728;&#x5B50;&#x7C7B;&#x4E2D;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x91CD;&#x6784; , &#x4E0E;&#x7EBF;&#x7A0B;&#x4E2D;&#x4E00;&#x6837;</td>
+</tr>
+<tr>
+<td>Process.start (self)</td>
+<td>&#x542F;&#x52A8;&#x8FDB;&#x7A0B; , start&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#x53BB;&#x5E2E;&#x4F60;&#x8C03;&#x7528;run&#x65B9;&#x6CD5;</td>
+</tr>
+<tr>
+<td>Process.terminate (self)</td>
+<td>&#x5F3A;&#x5236;&#x7EC8;&#x6B62;&#x8FDB;&#x7A0B; , &#x4E0D;&#x4F1A;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x6E05;&#x7406;&#x64CD;&#x4F5C; , &#x4F7F;&#x7528;&#x65F6;&#x9700;&#x5C0F;&#x5FC3;&#x5176;&#x5B50;&#x8FDB;&#x7A0B;&#x4E0E;&#x9501;&#x7684;&#x95EE;&#x9898;</td>
+</tr>
+<tr>
+<td>Process.join (self, timeout=None)</td>
+<td>&#x4E0E;&#x7EBF;&#x7A0B;&#x4E2D;&#x4E00;&#x6837; , &#x963B;&#x585E;&#x8C03;&#x7528; , &#x4E3B;&#x8FDB;&#x7A0B;&#x8FDB;&#x884C;&#x7B49;&#x5F85; , timeout&#x4E3A;&#x8D85;&#x65F6;&#x65F6;&#x95F4;</td>
+</tr>
+<tr>
+<td>Process.is_alive (self)</td>
+<td>&#x5224;&#x65AD;&#x8FDB;&#x7A0B;&#x662F;&#x5426;&#x6B63;&#x5728;&#x8FD0;&#x884C; , &#x8FD4;&#x56DE;bool&#x503C;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x5B9E;&#x4F8B;&#x5C5E;&#x6027;&#x8BF4;&#x660E;</p>
+<table>
+<thead>
+<tr>
+<th>&#x5C5E;&#x6027;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Process.daemon</td>
+<td>&#x9ED8;&#x8BA4;&#x503C;&#x4E3A;False , True&#x5219;&#x4E3A;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;</td>
+</tr>
+<tr>
+<td>Process.name</td>
+<td>&#x8FDB;&#x7A0B;&#x7684;&#x540D;&#x79F0;</td>
+</tr>
+<tr>
+<td>Process.pid</td>
+<td>&#x8FDB;&#x7A0B;&#x7684;pid</td>
+</tr>
+<tr>
+<td>Process.exitcode</td>
+<td>&#x8FDB;&#x7A0B;&#x8FD0;&#x884C;&#x65F6;&#x4E3A;None , &#x5982;&#x679C;&#x4E3A;-N , &#x8868;&#x793A;&#x88AB;&#x4FE1;&#x53F7;N&#x7ED3;&#x675F;</td>
+</tr>
+<tr>
+<td>Process.authkey</td>
+<td>&#x8FDB;&#x7A0B;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x952E; , &#x9ED8;&#x8BA4;&#x662F;&#x7531;os.urandom()&#x968F;&#x673A;&#x751F;&#x6210;&#x7684;32&#x5B57;&#x7B26;&#x7684;&#x5B57;&#x7B26;&#x4E32; .  &#x8FD9;&#x4E2A;&#x952E;&#x7684;&#x7528;&#x9014;&#x662F;&#x4E3A;&#x6D89;&#x53CA;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x7684;&#x5E95;&#x5C42;&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x63D0;&#x4F9B;&#x5B89;&#x5168;&#x6027; , &#x8FD9;&#x7C7B;&#x8FDE;&#x63A5;&#x53EA;&#x6709;&#x5728;&#x5177;&#x6709;&#x76F8;&#x540C;&#x7684;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x952E;&#x65F6;&#x624D;&#x80FD;&#x6210;&#x529F;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>&#x521B;&#x5EFA;&#x8FDB;&#x7A0B;</strong> </p>
+<p>&#x4E0E;&#x521B;&#x5EFA;&#x7EBF;&#x7A0B;&#x7684;&#x65B9;&#x5F0F;&#x4E00;&#x6837; , &#x6709;&#x4E24;&#x79CD;</p>
+<p>&#x51FD;&#x6570;&#x8C03;&#x7528;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-keyword">import</span> time
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hello</span><span class="hljs-params">(name)</span>:</span>
+    print(<span class="hljs-string">&quot;I am %s&quot;</span> % name)
+    time.sleep(<span class="hljs-number">1</span>)
+    print(<span class="hljs-string">&quot;Hello future...&quot;</span>)
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-comment"># &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5B9E;&#x4F8B;</span>
+    p = multiprocessing.Process(target=hello, args=(<span class="hljs-string">&quot;Lyon&quot;</span>,))
+    <span class="hljs-comment"># &#x542F;&#x52A8;&#x8FDB;&#x7A0B;,&#x5B9E;&#x8D28;&#x8C03;&#x7528;run()</span>
+    p.start()
+    print(<span class="hljs-string">&quot;End of main process...&quot;</span>)
+<span class="hljs-string">&apos;&apos;&apos;
+&#x6267;&#x884C;&#x7ED3;&#x679C;:
+End of main process...
+I am Lyon
+Hello future...
+&apos;&apos;&apos;</span>
+</code></pre>
+<p>&#x7C7B;&#x7EE7;&#x627F;&#x8C03;&#x7528;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-keyword">import</span> time
+<span class="hljs-comment"># &#x81EA;&#x5B9A;&#x4E49;&#x8FDB;&#x7A0B;&#x7C7B;,&#x7EE7;&#x627F;multiprocessing&#x4E2D;&#x7684;Process&#x7C7B;</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyProcess</span><span class="hljs-params">(multiprocessing.Process)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, name)</span>:</span>
+        super().__init__()
+        self.name = name
+    <span class="hljs-comment"># &#x91CD;&#x6784;&#x7236;&#x7C7B;&#x4E2D;&#x7684;run&#x65B9;&#x6CD5;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">&quot;I am %s&quot;</span> % self.name)
+        time.sleep(<span class="hljs-number">1</span>)
+        print(<span class="hljs-string">&quot;Hello future...&quot;</span>)
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-comment"># &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x5B9E;&#x4F8B;</span>
+    p = MyProcess(<span class="hljs-string">&apos;Lyon&apos;</span>)
+    <span class="hljs-comment"># &#x542F;&#x52A8;&#x8FDB;&#x7A0B;</span>
+    p.start()
+    print(<span class="hljs-string">&quot;End of main process...&quot;</span>)
+<span class="hljs-string">&apos;&apos;&apos;
+&#x6267;&#x884C;&#x7ED3;&#x679C;:
+End of main process...
+I am Lyon
+Hello future...
+&apos;&apos;&apos;</span>
+</code></pre>
+<p>&#x5728;&#x4E0A;&#x6817;&#x521B;&#x5EFA;&#x8FDB;&#x7A0B;&#x4E2D;&#x6709;&#x4E00;&#x4E2A;&#x95EE;&#x9898; , &#x5C31;&#x662F;&#x5982;&#x679C;&#x6211;&#x4EEC;&#x5728;Windows&#x4E0B; , &#x4F7F;&#x7528;<code>start()</code>&#x65B9;&#x6CD5; , &#x5C31;&#x5FC5;&#x987B;&#x52A0;&#x4E0A;<code>if __name__ == &apos;__main__&apos;:</code>  , &#x8FDB;&#x7A0B;&#x662F;&#x901A;&#x8FC7;<code>fork</code>&#x7CFB;&#x7EDF;&#x8C03;&#x7528; , &#x800C;Windows&#x4E2D;&#x5E76;&#x6CA1;&#x6709;fork , &#x6240;&#x4EE5;&#x591A;&#x5904;&#x7406;&#x6A21;&#x5757;&#x542F;&#x52A8;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Python&#x8FDB;&#x7A0B; , &#x5E76;&#x5BFC;&#x5165;&#x4E86;&#x8C03;&#x7528;&#x6A21;&#x5757; . &#x5982;&#x679C;&#x8FDB;&#x7A0B;&#x5728;&#x5BFC;&#x5165;&#x7684;&#x65F6;&#x5019;&#x88AB;&#x8C03;&#x7528; , &#x90A3;&#x4E48;&#x8FD9;&#x5C31;&#x4F1A;&#x5F15;&#x53D1;&#x65E0;&#x9650;&#x7684;&#x65B0;&#x8FDB;&#x7A0B; , &#x540E;&#x679C;&#x4E0D;&#x8A00;&#x800C;&#x55BB; . &#x5F53;&#x7136;&#x8FD8;&#x662F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;<code>run()</code>&#x7684;</p>
+<h2 id="join--daemon--&#x1F340;"><a name="join--daemon--&#x1F340;" class="anchor-navigation-ex-anchor" href="#join--daemon--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Join &amp; Daemon  &#x1F340;</h2>
+<p>join</p>
+<p>&#x8FDB;&#x7A0B;&#x4E2D;join&#x4E0E;&#x7EBF;&#x7A0B;&#x4E2D;&#x7684;join&#x662F;&#x4E00;&#x6837;&#x7684; , &#x5C31;&#x8FDB;&#x884C;&#x963B;&#x585E;&#x8C03;&#x7528; , &#x8BA9;&#x4E3B;&#x8FDB;&#x7A0B;&#x8FDB;&#x884C;&#x7B49;&#x5F85; , &#x6574;&#x4F53;&#x4E32;&#x884C;</p>
+<p>&#x5B9E;&#x4F8B;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x591A;&#x7EBF;&#x7A0B;&#x4E2D;&#x7684;&#x4F8B;&#x5B50;,&#x6362;&#x6C64;&#x4E0D;&#x6362;&#x836F;</span>
+<span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-keyword">import</span> time
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(name)</span>:</span>
+    print(<span class="hljs-string">&quot;I am %s&quot;</span> % name)
+    time.sleep(<span class="hljs-number">2</span>)
+    print(<span class="hljs-string">&quot;When I&apos;m done, I&apos;m going to keep talking...&quot;</span>)
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    lyon = multiprocessing.Process(target=run, args=(<span class="hljs-string">&apos;Lyon&apos;</span>,))
+    kenneth = multiprocessing.Process(target=run, args=(<span class="hljs-string">&apos;Kenneth&apos;</span>,))
+    lyon.start()
+    lyon.join()
+    kenneth.start()
+    kenneth.join()
+    print(<span class="hljs-string">&quot;I was the main thread, and I ended up executing&quot;</span>)
+<span class="hljs-string">&apos;&apos;&apos;
+&#x6267;&#x884C;&#x7ED3;&#x679C;:
+I am Lyon
+When I&apos;m done, I&apos;m going to keep talking...
+I am Kenneth
+When I&apos;m done, I&apos;m going to keep talking...
+I was the main thread, and I ended up executing
+&apos;&apos;&apos;</span>
+</code></pre>
+<p>Daemon</p>
+<p>&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x4F1A;&#x5728;&#x4E3B;&#x8FDB;&#x7A0B;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x7ED3;&#x675F;&#x540E;&#x5C31;&#x7EC8;&#x6B62;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x8FD8;&#x662F;&#x591A;&#x7EBF;&#x7A0B;&#x4E2D;&#x7684;&#x4F8B;&#x5B50;</span>
+<span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-keyword">import</span> time
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(num)</span>:</span>
+    print(<span class="hljs-string">&quot;I like num %d&quot;</span> % num)
+    time.sleep(<span class="hljs-number">2</span>)
+    print(<span class="hljs-string">&quot;When I&apos;m done, I&apos;m going to keep talking...&quot;</span>)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, <span class="hljs-number">6</span>):
+        t = multiprocessing.Process(target=run, args=(i,))
+        t.daemon = <span class="hljs-keyword">True</span>
+        t.start()
+        t.join()
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    m = multiprocessing.Process(target=main, args=[])
+    m.start()
+    m.join(timeout=<span class="hljs-number">8</span>)
+<span class="hljs-string">&apos;&apos;&apos;
+&#x6267;&#x884C;&#x7ED3;&#x679C;:
+I like num 1
+When I&apos;m done, I&apos;m going to keep talking...
+I like num 2
+When I&apos;m done, I&apos;m going to keep talking...
+I like num 3
+When I&apos;m done, I&apos;m going to keep talking...
+I like num 4
+When I&apos;m done, I&apos;m going to keep talking...
+I like num 5
+When I&apos;m done, I&apos;m going to keep talking...
+&apos;&apos;&apos;</span>
+</code></pre>
+<p>PS : &#x4E0E;&#x7EBF;&#x7A0B;&#x4E0D;&#x540C;&#x7684;&#x662F; , &#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x5185;&#x65E0;&#x6CD5;&#x518D;&#x5F00;&#x542F;&#x5B50;&#x8FDB;&#x7A0B; , &#x5426;&#x5219;&#x5C31;&#x629B;&#x51FA;&#x5F02;&#x5E38;</p>
+<h2 id="lock--&#x1F340;"><a name="lock--&#x1F340;" class="anchor-navigation-ex-anchor" href="#lock--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Lock  &#x1F340;</h2>
+<p>&#x8FDB;&#x7A0B;&#x4E4B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x662F;&#x4E0D;&#x5171;&#x4EAB;&#x7684; , &#x56E0;&#x4E3A;&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x4E4B;&#x95F4;&#x662F;&#x76F8;&#x4E92;&#x72EC;&#x7ACB;&#x7684; , &#x4F46;&#x662F;&#x8FDB;&#x7A0B;&#x5171;&#x4EAB;&#x4E00;&#x5957;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF; , &#x6240;&#x4EE5;&#x8BBF;&#x95EE;&#x540C;&#x4E00;&#x4E2A;&#x6587;&#x4EF6; , &#x662F;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#x7684; , &#x4F46;&#x662F;&#x5982;&#x679C;&#x6709;&#x591A;&#x4E2A;&#x8FDB;&#x7A0B;&#x5BF9;&#x540C;&#x4E00;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x4FEE;&#x6539; , &#x5C31;&#x4F1A;&#x9020;&#x6210;&#x9519;&#x4E71; , &#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x4E3A;&#x4E86;&#x4FDD;&#x62A4;&#x6587;&#x4EF6;&#x6570;&#x636E;&#x7684;&#x5B89;&#x5168; , &#x5C31;&#x9700;&#x8981;&#x7ED9;&#x5176;&#x8FDB;&#x884C;&#x52A0;&#x9501;</p>
+<p>&#x540C;&#x6837;&#x7684; , join&#x4E3A;&#x6574;&#x4F53;&#x4E32;&#x884C; , lock&#x4E3A;&#x5C40;&#x90E8;&#x4E32;&#x884C;</p>
+<p>&#x5ED6;&#x5927;&#x5927;&#x5B9E;&#x4F8B; , Lock</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-comment"># &#x5047;&#x5B9A;&#x8FD9;&#x662F;&#x4F60;&#x7684;&#x94F6;&#x884C;&#x5B58;&#x6B3E;:</span>
+balance = <span class="hljs-number">0</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change_it</span><span class="hljs-params">(n)</span>:</span>
+    <span class="hljs-comment"># &#x5148;&#x5B58;&#x540E;&#x53D6;&#xFF0C;&#x7ED3;&#x679C;&#x5E94;&#x8BE5;&#x4E3A;0:</span>
+    <span class="hljs-keyword">global</span> balance
+    balance = balance + n
+    balance = balance - n
+<span class="hljs-comment"># &#x521B;&#x5EFA;&#x4E00;&#x628A;&#x9501;</span>
+lock = multiprocessing.Lock()
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run_thread</span><span class="hljs-params">(n)</span>:</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">100000</span>):
+        <span class="hljs-comment"># &#x5148;&#x8981;&#x83B7;&#x53D6;&#x9501;:</span>
+        lock.acquire()
+        <span class="hljs-keyword">try</span>:
+            <span class="hljs-comment"># &#x653E;&#x5FC3;&#x5730;&#x6539;&#x5427;:</span>
+            change_it(n)
+        <span class="hljs-keyword">finally</span>:
+            <span class="hljs-comment"># &#x6539;&#x5B8C;&#x4E86;&#x4E00;&#x5B9A;&#x8981;&#x91CA;&#x653E;&#x9501;:</span>
+            lock.release()
+<span class="hljs-comment"># &#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x4F8B;&#x5B50;&#x4E2D;&#x5E76;&#x6CA1;&#x6709;&#x5199;&#x8FD9;&#x53E5;,&#x4F46;&#x662F;&#x591A;&#x8FDB;&#x7A0B;&#x4E2D;&#x4F7F;&#x7528;start()&#x5FC5;&#x987B;&#x52A0;</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> range(<span class="hljs-number">10000</span>):
+        t1 = multiprocessing.Process(target=run_thread, args=(<span class="hljs-number">5</span>,))
+        t2 = multiprocessing.Process(target=run_thread, args=(<span class="hljs-number">8</span>,))
+        t1.start()
+        t2.start()
+        t1.join()
+        t2.join()
+        print(balance)
+<span class="hljs-string">&apos;&apos;&apos;
+&#x6267;&#x884C;&#x7ED3;&#x679C;:
+0
+.
+# &#x6570;&#x636E;&#x5B89;&#x5168;&#x5F97;&#x5230;&#x4E86;&#x4FDD;&#x969C;,&#x6240;&#x4EE5;&#x5168;&#x4E3A;0
+...
+</span></code></pre>
+<p>RLock</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-keyword">import</span> time
+mutexA = mutexB = multiprocessing.RLock()
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyThread</span><span class="hljs-params">(multiprocessing.Process)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
+        self.func1()
+        self.func2()
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func1</span><span class="hljs-params">(self)</span>:</span>
+        mutexA.acquire()
+        print(<span class="hljs-string">&quot;\033[31m%s get mutexA...\033[0m&quot;</span> % self.name)
+        mutexB.acquire()
+        print(<span class="hljs-string">&quot;\033[33m%s get mutexB...\033[0m&quot;</span> % self.name)
+        mutexB.release()
+        mutexA.release()
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func2</span><span class="hljs-params">(self)</span>:</span>
+        mutexB.acquire()
+        print(<span class="hljs-string">&quot;\033[35m%s get mutexB...\033[0m&quot;</span> % self.name)
+        time.sleep(<span class="hljs-number">1</span>)
+        mutexA.acquire()
+        print(<span class="hljs-string">&quot;\033[37m%s get mutexA...\033[0m&quot;</span> % self.name)
+        mutexA.release()
+        mutexB.release()
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+        t = MyThread()
+        t.start()
+</code></pre>
+<h2 id="producer-consumer--&#x1F340;"><a name="producer-consumer--&#x1F340;" class="anchor-navigation-ex-anchor" href="#producer-consumer--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Producer-consumer  &#x1F340;</h2>
+<p>&#x751F;&#x4EA7;&#x8005;&#x6D88;&#x8D39;&#x8005;&#x6A21;&#x5F0F; , &#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x4E2D;&#x5DF2;&#x7ECF;&#x6709;&#x8FC7;&#x8BF4;&#x660E;&#x4E86; , &#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x5E76;&#x53D1;&#x95EE;&#x9898;</p>
+<p>&#x5B9E;&#x4F8B;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x53EF;&#x4E0E;&#x591A;&#x7EBF;&#x7A0B;&#x7BC7;&#x4E2D;&#x8FDB;&#x884C;&#x5BF9;&#x7167;</span>
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> multiprocessing
+q = multiprocessing.Queue()
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Producer</span><span class="hljs-params">(name, q)</span>:</span>
+    count = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> count &lt; <span class="hljs-number">5</span>:
+        time.sleep(random.randrange(<span class="hljs-number">3</span>))
+        q.put(count)
+        print(<span class="hljs-string">&apos;Producer %s has produced %s bun...&apos;</span> % (name, count))
+        count += <span class="hljs-number">1</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Consumer</span><span class="hljs-params">(name , q)</span>:</span>
+    count = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> count &lt; <span class="hljs-number">20</span>:
+        time.sleep(random.randrange(<span class="hljs-number">4</span>))
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> q.empty():
+            data = q.get()
+            print(data)
+            print(<span class="hljs-string">&apos;\033[32;1mConsumer %s has eat %s bun...\033[0m&apos;</span> % (name, data))
+        <span class="hljs-keyword">else</span>:
+            print(<span class="hljs-string">&quot;No bun anymore...&quot;</span>)
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-comment"># &#x8FDB;&#x7A0B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x662F;&#x4E0D;&#x5171;&#x4EAB;&#x7684;,&#x6CE8;&#x610F;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x628A;q,&#x5373;&#x961F;&#x5217;&#x5BF9;&#x8C61;&#x4F20;&#x5165;&#x51FD;&#x6570;&#x4E2D;</span>
+    p1 = multiprocessing.Process(target=Producer, args=(<span class="hljs-string">&apos;Lyon&apos;</span>, q,))
+    c1 = multiprocessing.Process(target=Consumer, args=(<span class="hljs-string">&apos;Kenneth&apos;</span>, q,))
+    p1.start()
+    c1.start()
+    p1.join()
+    c1.join()
+    print(<span class="hljs-string">&quot;End of main process...&quot;</span>)
+</code></pre>
+<h2 id="queue--&#x1F340;"><a name="queue--&#x1F340;" class="anchor-navigation-ex-anchor" href="#queue--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Queue  &#x1F340;</h2>
+<p>multiprocessing&#x6A21;&#x5757;&#x652F;&#x6301;&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;&#x6709;&#x4E24;&#x79CD;&#x4E3B;&#x8981;&#x5F62;&#x5F0F; , &#x961F;&#x5217;&#x548C;&#x7BA1;&#x9053;</p>
+<p>&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x4E2D;&#x6709;queue&#x6A21;&#x5757; , &#x4F9B;&#x6211;&#x4EEC;&#x5B9E;&#x73B0;&#x961F;&#x5217;&#x63A5;&#x53E3; , &#x5728;&#x591A;&#x8FDB;&#x7A0B;&#x4E2D;&#x5219;&#x662F;Queue&#x7C7B;&#x4E3A;&#x6211;&#x4EEC;&#x63D0;&#x4F9B;&#x961F;&#x5217;&#x63A5;&#x53E3;</p>
+<p>Queue&#x4E3A;&#x5355;&#x5411;&#x901A;&#x9053; , &#x5148;&#x8FDB;&#x5148;&#x51FA;(FIFO)</p>
+<pre><code class="lang-python">
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Queue</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, maxsize=<span class="hljs-number">-1</span>)</span>:</span>
+        self._maxsize = maxsize
+    <span class="hljs-comment"># &#x8FD4;&#x56DE;&#x961F;&#x5217;&#x4E2D;&#x76EE;&#x524D;&#x9879;&#x76EE;&#x6570;&#x91CF;,&#x4F7F;&#x7528;&#x65F6;&#x9632;&#x6B62;&#x7ADE;&#x4E89;,&#x6700;&#x597D;&#x4EE4;&#x5176;&#x4E32;&#x884C;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">qsize</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+    <span class="hljs-comment"># &#x961F;&#x5217;&#x662F;&#x5426;&#x4E3A;&#x7A7A;,&#x8FD4;&#x56DE;True,&#x4F7F;&#x7528;&#x65F6;&#x9632;&#x6B62;&#x7ADE;&#x4E89;,&#x6700;&#x597D;&#x4EE4;&#x5176;&#x4E32;&#x884C;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">empty</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+    <span class="hljs-comment"># &#x961F;&#x5217;&#x662F;&#x5426;&#x5DF2;&#x6EE1;,&#x8FD4;&#x56DE;True,&#x4F7F;&#x7528;&#x65F6;&#x9632;&#x6B62;&#x7ADE;&#x4E89;,&#x6700;&#x597D;&#x4EE4;&#x5176;&#x4E32;&#x884C;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">full</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+    <span class="hljs-comment"># &#x5C06;&#x6570;&#x636E;&#x653E;&#x5165;&#x961F;&#x5217;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">put</span><span class="hljs-params">(self, obj, block=True, timeout=None)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x540C;&#x4E0A;put</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">put_nowait</span><span class="hljs-params">(self, obj)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x4ECE;&#x961F;&#x5217;&#x4E2D;&#x53D6;&#x51FA;&#x9879;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get</span><span class="hljs-params">(self, block=True, timeout=None)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x540C;&#x4E0A;get</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_nowait</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x5173;&#x95ED;&#x961F;&#x5217;,&#x5783;&#x573E;&#x56DE;&#x6536;&#x4F1A;&#x8C03;&#x7528;&#x6B64;&#x65B9;&#x6CD5;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">close</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x8FDE;&#x63A5;&#x961F;&#x5217;&#x7684;&#x540E;&#x53F0;&#x7EBF;&#x7A0B;,&#x7528;&#x4E8E;&#x7B49;&#x5F85;&#x6240;&#x6709;&#x961F;&#x5217;&#x9879;&#x6D88;&#x8017;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">join_thread</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x4E0D;&#x4F1A;&#x5728;&#x5728;&#x8FDB;&#x7A0B;&#x9000;&#x51FA;&#x65F6;&#x81EA;&#x52A8;&#x8FDE;&#x63A5;&#x540E;&#x53F0;&#x7EBF;&#x7A0B;,&#x53EF;&#x9632;&#x6B62;join_thread()&#x65B9;&#x6CD5;&#x963B;&#x585E;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">cancel_join_thread</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+</code></pre>
+<p>&#x5B9E;&#x4F8B;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> multiprocessing
+q = multiprocessing.Queue(<span class="hljs-number">3</span>)
+q.put(<span class="hljs-string">&quot;First&quot;</span>)
+q.put(<span class="hljs-string">&quot;Second&quot;</span>)
+q.put(<span class="hljs-string">&quot;Third&quot;</span>)
+print(q.full())
+print(q.get())
+print(q.get())
+print(q.get())
+print(q.empty())
+<span class="hljs-string">&apos;&apos;&apos;
+&#x6267;&#x884C;&#x7ED3;&#x679C;:
+True
+First
+Second
+Third
+True
+
+&apos;&apos;&apos;</span>
+</code></pre>
+<h2 id="pipe--&#x1F340;"><a name="pipe--&#x1F340;" class="anchor-navigation-ex-anchor" href="#pipe--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Pipe  &#x1F340;</h2>
+<p>&#x4ECB;&#x7ECD;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># Pipe&#x5728;&#x8FDB;&#x7A0B;&#x4E4B;&#x95F4;&#x521B;&#x5EFA;&#x4E00;&#x6761;&#x7BA1;&#x9053;,&#x5E76;&#x8FD4;&#x56DE;&#x5143;&#x7EC4;(connection(),connection())</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">Pipe</span><span class="hljs-params">(duplex=True)</span>:</span>
+    <span class="hljs-keyword">return</span> Connection(), Connection()
+<span class="hljs-comment"># &#x7BA1;&#x9053;&#x7AEF;&#x7684;&#x8FDE;&#x63A5;&#x5BF9;&#x8C61;</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Connection</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-comment"># &#x53D1;&#x9001;&#x5BF9;&#x8C61;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">send</span><span class="hljs-params">(self, obj)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x63A5;&#x6536;&#x53E6;&#x4E00;&#x7AEF;&#x53D1;&#x9001;&#x7684;&#x5BF9;&#x8C61;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">recv</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x8FD4;&#x56DE;&#x8FDE;&#x63A5;&#x4F7F;&#x7528;&#x7684;&#x6574;&#x6570;&#x6587;&#x4EF6;&#x63CF;&#x8FF0;&#x7B26;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">fileno</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+    <span class="hljs-comment"># &#x5173;&#x95ED;&#x94FE;&#x63A5;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">close</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x5982;&#x679C;&#x94FE;&#x63A5;&#x4E0A;&#x7684;&#x6570;&#x636E;&#x53EF;&#x7528;,&#x8FD4;&#x56DE;True</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">poll</span><span class="hljs-params">(self, timeout=None)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x53D1;&#x9001;&#x5B57;&#x8282;&#x5230;&#x6570;&#x636E;&#x7F13;&#x51B2;&#x533A;,buffer&#x662F;&#x652F;&#x6301;&#x7F13;&#x51B2;&#x533A;&#x63A5;&#x53E3;&#x7684;&#x4EFB;&#x610F;&#x5BF9;&#x8C61;,offset&#x4E3A;&#x504F;&#x79FB;&#x91CF;,size&#x4E3A;&#x5B57;&#x8282;&#x6570;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">send_bytes</span><span class="hljs-params">(self, buffer, offset=<span class="hljs-number">-1</span>, size=<span class="hljs-number">-1</span>)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x63A5;&#x6536;&#x4E00;&#x6761;&#x5B8C;&#x6574;&#x5B57;&#x8282;&#x6D88;&#x606F;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">recv_bytes</span><span class="hljs-params">(self, maxlength=<span class="hljs-number">-1</span>)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-comment"># &#x63A5;&#x6536;&#x4E00;&#x6761;&#x5B8C;&#x6574;&#x7684;&#x5B57;&#x8282;&#x6D88;&#x606F;,&#x5E76;&#x628A;&#x5B83;&#x4FDD;&#x5B58;&#x5728;buffer&#x5BF9;&#x8C61;&#x4E2D;,&#x8BE5;&#x5BF9;&#x8C61;&#x652F;&#x6301;&#x53EF;&#x5199;&#x5165;&#x7684;&#x7F13;&#x51B2;&#x533A;&#x63A5;&#x53E3;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">recv_bytes_into</span><span class="hljs-params">(self, buffer, offset=<span class="hljs-number">-1</span>)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+<span class="hljs-string">&apos;&apos;&apos;
+Connection&#x7C7B;&#x4E0E;&#x6211;&#x4EEC;&#x7F51;&#x7EDC;&#x7F16;&#x7A0B;&#x4E2D;&#x6240;&#x4F7F;&#x7528;&#x7684;socket(TCP)&#x7C7B;&#x4F3C;,socket(TCP)&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x901A;&#x4FE1;&#x4E5F;&#x662F;&#x53CC;&#x5411;&#x7684;
+...
+</span></code></pre>
+<p>&#x57FA;&#x4E8E;&#x7BA1;&#x9053;&#x5B9E;&#x73B0;&#x8FDB;&#x7A0B;&#x95F4;&#x901A;&#x4FE1;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">producer</span><span class="hljs-params">(seq, p)</span>:</span>
+    left,right = p
+    <span class="hljs-comment"># &#x5173;&#x95ED;&#x4E0D;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x7AEF;</span>
+    right.close()
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> seq:
+        <span class="hljs-comment"># &#x53D1;&#x9001;&#x8FDB;&#x7BA1;&#x9053;&#x4E2D;</span>
+        left.send(i)
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-comment"># &#x5173;&#x95ED;&#x7BA1;&#x9053;</span>
+        left.close()
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">consumer</span><span class="hljs-params">(p, name)</span>:</span>
+    left,right = p
+    <span class="hljs-comment"># &#x5173;&#x95ED;&#x4E0D;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x7AEF;</span>
+    left.close()
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">True</span>:
+        <span class="hljs-comment"># &#x5982;&#x679C;&#x6D88;&#x8D39;&#x8005;&#x4E0D;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x7AEF;&#x5FD8;&#x8BB0;&#x5173;&#x95ED;,&#x6D88;&#x8D39;&#x8005;&#x4E2D;&#x7684;recv()&#x5C31;&#x4E00;&#x76F4;&#x7B49;&#x4E0B;&#x53BB;</span>
+        <span class="hljs-keyword">try</span>:
+            bun = right.recv()
+            print(<span class="hljs-string">&apos;%s got %s buns...&apos;</span> % (name, bun))
+        <span class="hljs-comment"># &#x89E6;&#x53D1;EOFError</span>
+        <span class="hljs-keyword">except</span> EOFError:
+            right.close()
+            <span class="hljs-keyword">break</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-comment"># &#x521B;&#x5EFA;&#x7BA1;&#x9053;&#x5B9E;&#x4F8B;</span>
+    left, right = multiprocessing.Pipe()
+    c1 = multiprocessing.Process(target=consumer, args=((left, right), <span class="hljs-string">&apos;c1&apos;</span>))
+    c1.start()
+    seq = (i <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>))
+    producer(seq, (left, right))
+    right.close()
+    left.close()
+    c1.join()
+    print(<span class="hljs-string">&apos;End of main process...&apos;</span>)
+</code></pre>
+<h2 id="manager--&#x1F340;"><a name="manager--&#x1F340;" class="anchor-navigation-ex-anchor" href="#manager--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Manager  &#x1F340;</h2>
+<p>&#x8FDB;&#x7A0B;&#x4E4B;&#x95F4;&#x662F;&#x76F8;&#x4E92;&#x72EC;&#x7ACB;&#x7684; , &#x5728;multiprocessing&#x6A21;&#x5757;&#x4E2D;&#x7684;Manager&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x8FDB;&#x7A0B;&#x95F4;&#x6570;&#x636E;&#x5171;&#x4EAB; , &#x5E76;&#x4E14;Manager&#x8FD8;&#x652F;&#x6301;&#x8FDB;&#x7A0B;&#x4E2D;&#x7684;&#x5F88;&#x591A;&#x64CD;&#x4F5C; , &#x6BD4;&#x5982;Condition , Lock , Namespace , Queue , RLock , Semaphore&#x7B49;</p>
+<p>&#x7531;&#x4E8E;&#x57FA;&#x4E8E;&#x6D88;&#x606F;&#x4F20;&#x9012;(Queue , Pipe)&#x7684;&#x5E76;&#x53D1;&#x7F16;&#x7A0B;&#x624D;&#x662F;&#x672A;&#x6765;&#x7684;&#x4E3B;&#x6D41; , &#x6240;&#x4EE5;&#x5BF9;&#x4E8E;Manager&#x5E94;&#x8BE5;&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x4F7F;&#x7528;</p>
+<p>Manager&#x5B9E;&#x4F8B;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-comment"># &#x65E2;&#x7136;&#x6570;&#x636E;&#x5171;&#x4EAB;&#x4E86;,&#x5C31;&#x9700;&#x8981;&#x50CF;&#x591A;&#x7EBF;&#x7A0B;&#x90A3;&#x6837;,&#x9632;&#x6B62;&#x7ADE;&#x4E89;</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(d,lock)</span>:</span>
+      <span class="hljs-comment"># &#x6F14;&#x793A;&#x6CA1;&#x52A0;&#x9501;&#x7684;&#x5B9E;&#x4F8B;</span>
+    <span class="hljs-comment"># lock.acquire()</span>
+    d[<span class="hljs-string">&apos;count&apos;</span>] -= <span class="hljs-number">1</span>
+    <span class="hljs-comment"># lock.release()</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-comment"># lock = multiprocessing.Lock()</span>
+    <span class="hljs-keyword">with</span> multiprocessing.Manager() <span class="hljs-keyword">as</span> m:
+        dic = m.dict({<span class="hljs-string">&apos;count&apos;</span> : <span class="hljs-number">100</span>})
+        process_list = []
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">100</span>):
+            p = multiprocessing.Process(target=run, args=(dic, lock,))
+            process_list.append(p)
+            p.start()
+        <span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> process_list:
+            p.join()
+        print(dic)
+<span class="hljs-string">&apos;&apos;&apos;
+&#x6267;&#x884C;&#x7ED3;&#x679C;:
+# &#x8BE5;&#x7ED3;&#x679C;&#x770B;&#x7F18;&#x5206;&#x4E86;,&#x6CA1;&#x52A0;&#x9501;&#x6570;&#x636E;&#x5171;&#x4EAB;,&#x5BFC;&#x81F4;&#x6DF7;&#x4E71;,&#x4E0E;&#x7EBF;&#x7A0B;&#x4E2D;&#x4E00;&#x6837;
+{&apos;count&apos;: 1}
+&apos;&apos;&apos;</span>
+</code></pre>
+<p>&#x66F4;&#x591A;&#x8BE6;&#x7EC6;&#x5185;&#x5BB9;&lt; <a href="https://docs.python.org/3/library/multiprocessing.html?highlight=manager#module-multiprocessing.managers" target="_blank">multiprocessing.Manager</a> &gt; </p>
+<h2 id="semaphore--&#x1F340;"><a name="semaphore--&#x1F340;" class="anchor-navigation-ex-anchor" href="#semaphore--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Semaphore  &#x1F340;</h2>
+<p>&#x4E0E;&#x7EBF;&#x7A0B;&#x4E2D;&#x4E00;&#x6837;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Semaphore</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, value=<span class="hljs-number">1</span>)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">acquire</span><span class="hljs-params">(self, blocking=True, timeout=None)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">release</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+</code></pre>
+<p>&#x5B9E;&#x4F8B;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-keyword">import</span> time
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">(sem, num)</span>:</span>
+    sem.acquire()
+    print(<span class="hljs-string">&apos;%s get semaphores&apos;</span> % num)
+    time.sleep(<span class="hljs-number">2</span>)
+    sem.release()
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    sem = multiprocessing.Semaphore(<span class="hljs-number">5</span>)
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>,<span class="hljs-number">11</span>):
+        t = multiprocessing.Process(target=func, args=(sem, i,))
+        t.start()
+</code></pre>
+<h2 id="event--&#x1F340;"><a name="event--&#x1F340;" class="anchor-navigation-ex-anchor" href="#event--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Event  &#x1F340;</h2>
+<p>&#x4E0E;&#x7EBF;&#x7A0B;&#x4E2D;&#x4E00;&#x6837;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Event</span><span class="hljs-params">(object)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_set</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">False</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clear</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wait</span><span class="hljs-params">(self, timeout=None)</span>:</span>
+        <span class="hljs-keyword">pass</span>
+</code></pre>
+<p>&#x5B9E;&#x4F8B;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> multiprocessing
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> random
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">conn_mysql</span><span class="hljs-params">(conn, event)</span>:</span>
+    count = <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">not</span> event.is_set():
+        <span class="hljs-keyword">if</span> count &gt; <span class="hljs-number">3</span>:
+            <span class="hljs-comment"># &#x4E3B;&#x52A8;&#x89E6;&#x53D1;&#x8D85;&#x65F6;&#x5F02;&#x5E38;</span>
+            <span class="hljs-keyword">raise</span> TimeoutError(<span class="hljs-string">&apos;Connection timeout...&apos;</span>)
+        print(<span class="hljs-string">&apos;%s %sth attempt to connect&apos;</span> % (conn, count))
+        event.wait(<span class="hljs-number">0.5</span>)
+        count += <span class="hljs-number">1</span>
+    print(<span class="hljs-string">&apos;%s connect successfully&apos;</span> % conn)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">check_mysql</span><span class="hljs-params">(conn, event)</span>:</span>
+    print(<span class="hljs-string">&apos;%s is checking mysql&apos;</span> % conn)
+    time.sleep(random.randint(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>))
+    event.set()
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    event = multiprocessing.Event()
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+        conn = multiprocessing.Process(target=conn_mysql, args=(<span class="hljs-string">&apos;conn&apos;</span>+str(i), event))
+        conn.start()
+</code></pre>
+<h2 id="pool--&#x1F340;"><a name="pool--&#x1F340;" class="anchor-navigation-ex-anchor" href="#pool--&#x1F340;"><i class="fa fa-link" aria-hidden="true"></i></a>Pool  &#x1F340;</h2>
+<p><code>multiprocessing</code>&#x4E2D;&#x7684;Process&#x5B9E;&#x73B0;&#x4E86;&#x6211;&#x4EEC;&#x5BF9;&#x591A;&#x8FDB;&#x7A0B;&#x7684;&#x9700;&#x6C42; , &#x4F46;&#x662F;&#x5F53;&#x6211;&#x4EEC;&#x8FDB;&#x884C;&#x5E76;&#x53D1;&#x7F16;&#x7A0B;&#x65F6; , &#x4E00;&#x65E6;&#x9700;&#x8981;&#x5F00;&#x542F;&#x7684;&#x8FDB;&#x7A0B;&#x6570;&#x91CF;&#x975E;&#x5E38;&#x5927;&#x65F6; , &#x4F7F;&#x7528;Process&#x5DF2;&#x7ECF;&#x4E0D;&#x80FD;&#x6EE1;&#x8DB3;&#x6211;&#x4EEC;&#x7684;&#x8981;&#x6C42;&#x4E86; . &#x56E0;&#x4E3A;&#x8FDB;&#x7A0B;&#x662F;&#x9700;&#x8981;&#x5360;&#x7528;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x7684; , &#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E0D;&#x53EF;&#x80FD;&#x53BB;&#x65E0;&#x9650;&#x7684;&#x5F00;&#x542F;&#x8FDB;&#x7A0B; ; &#x5E76;&#x4E14;&#x4F7F;&#x7528;Process&#x52A8;&#x6001;&#x751F;&#x6210;&#x591A;&#x4E2A;&#x8FDB;&#x7A0B; , &#x6211;&#x4EEC;&#x8FD8;&#x9700;&#x8981;&#x624B;&#x52A8;&#x7684;&#x53BB;&#x9650;&#x5236;&#x8FDB;&#x7A0B;&#x7684;&#x6570;&#x91CF; , &#x6240;&#x4EE5;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x5C31;&#x5E94;&#x8BE5;&#x7528;&#x8FDB;&#x7A0B;&#x6C60;(Pool)&#x6765;&#x5B9E;&#x73B0;&#x4E86;</p>
+<p><code>multiprocessing.Pool</code> </p>
+<p>&#x53C2;&#x6570;&#x8BF4;&#x660E;</p>
+<table>
+<thead>
+<tr>
+<th>&#x53C2;&#x6570;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>numprocess</td>
+<td>&#x8981;&#x521B;&#x5EFA;&#x7684;&#x8FDB;&#x7A0B;&#x6570; , &#x5982;&#x679C;&#x7701;&#x7565;  &#x5C06;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;cpu_count()</td>
+</tr>
+<tr>
+<td>initializer</td>
+<td>&#x6BCF;&#x4E2A;&#x8FDB;&#x7A0B;&#x542F;&#x52A8;&#x65F6;&#x8981;&#x6267;&#x884C;&#x7684;&#x53EF;&#x8C03;&#x7528;&#x5BF9;&#x8C61;</td>
+</tr>
+<tr>
+<td>initargs</td>
+<td>&#x4F20;&#x7ED9;initializer&#x7684;&#x53C2;&#x6570;&#x7EC4;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x65B9;&#x6CD5;&#x8BF4;&#x660E;</p>
+<table>
+<thead>
+<tr>
+<th>&#x65B9;&#x6CD5;</th>
+<th>&#x8BF4;&#x660E;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pool.apply(self, func, args=(), kwds={})</td>
+<td>&#x5728;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x6C60;&#x4E2D;&#x6267;&#x884C;func(<em>args , *</em>kwargs) , &#x5E76;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;</td>
+</tr>
+<tr>
+<td>Pool.apply_async(self, func, args=(), kwds={}, callback=None,</td>
+<td>&#x4E0E;apply()&#x65B9;&#x6CD5;&#x4E00;&#x6837; , &#x8BE5;&#x65B9;&#x6CD5;&#x4E3A;&#x5F02;&#x6B65;&#x7248;&#x672C;&#x5E94;&#x7528;&#x7684;&#x65B9;&#x6CD5; , &#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x662F;AsyncResult&#x7C7B;&#x7684;&#x5B9E;&#x4F8B; , callback&#x6307;&#x5B9A;&#x56DE;&#x8C03;&#x7684;&#x51FD;&#x6570; . callback&#x7981;&#x6B62;&#x6267;&#x884C;&#x4EFB;&#x4F55;&#x963B;&#x585E;&#x64CD;&#x4F5C; , &#x5426;&#x5219;&#x5C06;&#x63A5;&#x6536;&#x5176;&#x4ED6;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#x4E2D;&#x7684;&#x7ED3;&#x679C;</td>
+</tr>
+<tr>
+<td>Pool.close(self)</td>
+<td>&#x5173;&#x95ED;&#x8FDB;&#x7A0B;&#x6C60; , &#x5982;&#x679C;&#x6240;&#x6709;&#x64CD;&#x4F5C;&#x6301;&#x7EED;&#x6302;&#x8D77; , &#x5B83;&#x4EEC;&#x5C06;&#x5728;&#x5DE5;&#x4F5C;&#x8FDB;&#x7A0B;&#x7EC8;&#x6B62;&#x524D;&#x5B8C;&#x6210;</td>
+</tr>
+<tr>
+<td>Pool.join(self)</td>
+<td>&#x7B49;&#x5F85;&#x6240;&#x6709;&#x5DE5;&#x4F5C;&#x8FDB;&#x7A0B;&#x9000;&#x51FA;</td>
+</tr>
+<tr>
+<td>Pool.get(self, timeout=None)</td>
+<td>&#x83B7;&#x53D6;&#x7ED3;&#x679C; , timeout&#x53EF;&#x9009;</td>
+</tr>
+<tr>
+<td>Pool.ready(self)</td>
+<td>&#x5B8C;&#x6210;&#x8C03;&#x7528;&#x5C31;&#x8FD4;&#x56DE;True</td>
+</tr>
+<tr>
+<td>Pool.successful(self)</td>
+<td>&#x5B8C;&#x6210;&#x8C03;&#x7528;&#x5E76;&#x4E14;&#x6CA1;&#x6709;&#x5F15;&#x53D1;&#x5F02;&#x5E38;&#x8FD4;&#x56DE;True , &#x5728;&#x7ED3;&#x679C;&#x5C31;&#x7EEA;&#x4E4B;&#x524D;&#x8C03;&#x7528;&#x6B64;&#x65B9;&#x6CD5;&#x4F1A;&#x5F15;&#x53D1;&#x5F02;&#x5E38;</td>
+</tr>
+<tr>
+<td>Pool.wait(self, timeout=None)</td>
+<td>&#x7B49;&#x5F85;&#x7ED3;&#x679C;&#x53D8;&#x4E3A;&#x53EF;&#x7528;</td>
+</tr>
+<tr>
+<td>Pool.terminate(self)</td>
+<td>&#x7ACB;&#x5373;&#x7EC8;&#x6B62;&#x6240;&#x6709;&#x5DE5;&#x4F5C;&#x8FDB;&#x7A0B; , &#x5783;&#x573E;&#x56DE;&#x6536;&#x4F1A;&#x81EA;&#x52A8;&#x8C03;&#x7528;&#x6B64;&#x65B9;&#x6CD5;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x540C;&#x6B65;&#x8C03;&#x7528;apply</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Pool
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> time
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(n)</span>:</span>
+    print(<span class="hljs-string">&quot;%s run...&quot;</span> % os.getpid())
+    <span class="hljs-comment"># &#x4E0D;&#x4EE4;&#x5176;&#x963B;&#x585E;,&#x7ED3;&#x679C;&#x4F1A;&#x540C;&#x65F6;&#x6253;&#x5370;</span>
+    time.sleep(<span class="hljs-number">2</span>)
+    <span class="hljs-keyword">return</span> n**<span class="hljs-number">2</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-comment"># &#x8FDB;&#x7A0B;&#x6C60;&#x6CA1;&#x6EE1;&#x5C31;&#x65B0;&#x521B;&#x5EFA;&#x8FDB;&#x7A0B;&#x6267;&#x884C;&#x8BF7;&#x6C42;,&#x5426;&#x5219;&#x5C31;&#x7B49;&#x5F85;</span>
+    <span class="hljs-comment"># &#x6CE8;&#x610F;,&#x8FD9;&#x91CC;&#x6307;&#x5B9A;&#x8FDB;&#x7A0B;&#x6C60;&#x6570;&#x91CF;&#x4E3A;3,&#x4F1A;&#x4E00;&#x76F4;&#x662F;&#x8FD9;&#x4E09;&#x4E2A;&#x8FDB;&#x7A0B;&#x5728;&#x6267;&#x884C;,&#x53EA;&#x4E0D;&#x8FC7;&#x6267;&#x884C;&#x7684;&#x8BF7;&#x6C42;&#x53EF;&#x80FD;&#x6539;&#x53D8;</span>
+    pool = Pool(<span class="hljs-number">3</span>)
+    res_list = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+        <span class="hljs-comment"># &#x83B7;&#x53D6;&#x6267;&#x884C;&#x7ED3;&#x679C;,&#x540C;&#x6B65;&#x8FD0;&#x884C;,&#x4F1A;&#x963B;&#x585E;&#x7B49;&#x5F85;&#x62FF;&#x5230;&#x7ED3;&#x679C;,&#x7B49;&#x5F85;&#x8FC7;&#x7A0B;&#x4E2D;&#x65E0;&#x8BBA;&#x662F;&#x5426;&#x963B;&#x585E;&#x90FD;&#x4F1A;&#x5728;&#x539F;&#x5730;&#x7B49;</span>
+        <span class="hljs-comment"># &#x6CE8;&#x610F;&#x7B49;&#x5F85;&#x8FC7;&#x7A0B;&#x4E2D;&#x7531;&#x4E8E;&#x963B;&#x585E;,&#x5176;cpu&#x6743;&#x9650;&#x4F1A;&#x88AB;&#x593A;&#x8D70;</span>
+        res = pool.apply(run, args=(i,))
+        res_list.append(res)
+    print(res_list)
+</code></pre>
+<p>&#x5F02;&#x6B65;&#x8C03;&#x7528;apply_async</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> multiprocessing <span class="hljs-keyword">import</span> Pool
+<span class="hljs-keyword">import</span> os
+<span class="hljs-keyword">import</span> time
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(n)</span>:</span>
+    print(<span class="hljs-string">&quot;%s run...&quot;</span> % os.getpid())
+    time.sleep(<span class="hljs-number">2</span>)
+    <span class="hljs-keyword">return</span> n**<span class="hljs-number">2</span>
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+    <span class="hljs-comment"># &#x8FDB;&#x7A0B;&#x6C60;&#x6CA1;&#x6EE1;&#x5C31;&#x65B0;&#x521B;&#x5EFA;&#x8FDB;&#x7A0B;&#x6267;&#x884C;&#x8BF7;&#x6C42;,&#x5426;&#x5219;&#x5C31;&#x7B49;&#x5F85;</span>
+    <span class="hljs-comment"># &#x6CE8;&#x610F;,&#x8FD9;&#x91CC;&#x6307;&#x5B9A;&#x8FDB;&#x7A0B;&#x6C60;&#x6570;&#x91CF;&#x4E3A;3,&#x4F1A;&#x4E00;&#x76F4;&#x662F;&#x8FD9;&#x4E09;&#x4E2A;&#x8FDB;&#x7A0B;&#x5728;&#x6267;&#x884C;,&#x53EA;&#x4E0D;&#x8FC7;&#x6267;&#x884C;&#x7684;&#x8BF7;&#x6C42;&#x53EF;&#x80FD;&#x6539;&#x53D8;</span>
+    pool = Pool(<span class="hljs-number">3</span>)
+    res_list = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+        res = pool.apply_async(run, args=(i,))
+        res_list.append(res)
+    pool.close()
+    pool.join()
+    <span class="hljs-keyword">for</span> res <span class="hljs-keyword">in</span> res_list:
+        print(res.get())
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="02-Python之路 - 并发编程之多线程.html" class="navigation navigation-prev " aria-label="Previous page: Python之路 - 并发编程之多线程">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="04-Python之路 - 多进程实例及回调函数.html" class="navigation navigation-next " aria-label="Next page: Python之路 - 多进程实例及回调函数">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Python之路 - 并发编程之多进程","level":"1.3.6.3","depth":3,"next":{"title":"Python之路 - 多进程实例及回调函数","level":"1.3.6.4","depth":3,"path":"01-Python/06-Concurrent/04-Python之路 - 多进程实例及回调函数.md","ref":"01-Python/06-Concurrent/04-Python之路 - 多进程实例及回调函数.md","articles":[]},"previous":{"title":"Python之路 - 并发编程之多线程","level":"1.3.6.2","depth":3,"path":"01-Python/06-Concurrent/02-Python之路 - 并发编程之多线程.md","ref":"01-Python/06-Concurrent/02-Python之路 - 并发编程之多线程.md","articles":[]},"dir":"ltr"},"config":{"plugins":["advanced-emoji","toggle-chapters","theme-comscore","splitter","github","-sharing","-lunr","-search","search-plus","anchor-navigation-ex-toc@0.0.9","editlink","copy-code-button"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/lyonyang/blogs"},"editlink":{"label":"编辑本页","multilingual":false,"base":"https://github.com/lyonyang/blogs/blob/master"},"splitter":{},"anchor-navigation-ex-toc":{"associatedWithSummary":true,"float":{"level1Icon":"fa fa-hand-o-right","level2Icon":"fa fa-hand-o-right","level3Icon":"fa fa-hand-o-right","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showLevel":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"theme-comscore":{},"copy-code-button":{},"advanced-emoji":{"embedEmojis":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{},"search-plus":{}},"theme":"default","author":"Lyon","pdf":{"pageBreaksBefore":"/","headerTemplate":null,"paperSize":"a4","margin":{"right":62,"left":62,"top":36,"bottom":36},"fontSize":18,"fontFamily":"Arial","footerTemplate":null,"chapterMark":"pagebreak","pageNumbers":false},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"blog","links":{"sharing":{"all":null,"facebook":null,"google":null,"twitter":null,"weibo":null}},"gitbook":"*","description":"my notes","extension":null},"file":{"path":"01-Python/06-Concurrent/03-Python之路 - 并发编程之多进程.md","mtime":"2019-05-09T13:44:01.538Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-05-09T13:45:25.389Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-editlink/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+
