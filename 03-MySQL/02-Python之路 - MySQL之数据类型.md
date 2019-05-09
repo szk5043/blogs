@@ -1,5 +1,8 @@
 # Python之路 - MySQL基本数据类型
 
+
+<extoc></extoc>
+
 ## 介绍  🍀
 
 MySQL中定义数据字段的类型对数据库的优化是非常重要的

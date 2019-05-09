@@ -1,5 +1,8 @@
 # Python之路 - Python介绍
 
+
+<extoc></extoc>
+
 ## 什么是Python  🍀
 
 Python的创始人是Guido van Rossum , 因为他是一个叫Monty Python的喜剧团体的爱好者 , 所以该语言就命名Python了
